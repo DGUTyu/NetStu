@@ -7,7 +7,11 @@
         <element id="directory" name="classes">
           <element id="module-output" name="NetStu" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="fastjson" />
+        </element>
       </element>
+      <element id="library" level="project" name="fastjson" />
     </root>
   </artifact>
 </component>
