@@ -40,10 +40,16 @@ public class TestServlet extends HttpServlet {
     }
 
     //不写这个方法则每次都可以请求
-//    @Override
-//    protected long getLastModified(HttpServletRequest req) {
-//        // 这个文本有没有更新过
-//        File file  = new File(req.getContextPath(),"index.html");
-//        return file.lastModified();
-//    }
+    /*
+    请求头会带If-Modified-Since: Fri, 21 Oct 2022 02:37:55 GMT
+     */
+
+    @Override
+    protected long getLastModified(HttpServletRequest req) {
+        // 这个文本有没有更新过
+        File file = new File(req.getRealPath("index.html"));
+        System.out.println(file.getAbsolutePath());
+        System.out.println(file.lastModified() + " --->");
+        return file.lastModified();
+    }
 }
