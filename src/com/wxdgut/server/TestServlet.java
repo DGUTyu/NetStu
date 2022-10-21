@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -32,8 +33,17 @@ public class TestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doPost(req, resp);
         PrintWriter printWriter = resp.getWriter();
+        System.out.println("Request");
         printWriter.write("test");
         printWriter.flush();
         printWriter.close();
     }
+
+    //不写这个方法则每次都可以请求
+//    @Override
+//    protected long getLastModified(HttpServletRequest req) {
+//        // 这个文本有没有更新过
+//        File file  = new File(req.getContextPath(),"index.html");
+//        return file.lastModified();
+//    }
 }

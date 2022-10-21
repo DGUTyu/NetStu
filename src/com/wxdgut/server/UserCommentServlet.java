@@ -1,8 +1,6 @@
 package com.wxdgut.server;
 
 
-
-
 import com.wxdgut.server.response.entity.ResponseEntity;
 
 import javax.servlet.annotation.WebServlet;
@@ -34,14 +32,24 @@ public class UserCommentServlet extends BaseJsonServlet {
 
         Cookie[] cookies = req.getCookies();
         //cookies默认有一个cookie：JSESSIONID 故 >1 cookie最多只有2个
-        if (cookies != null && cookies.length > 1) {
+        if (cookies != null) {
             //getName()取的是username，getValue()取的是luyao1
+            for (Cookie cookie : cookies) {
+                String userName = cookie.getName();
+                if (userName != null) {
+                    responseEntity.code = "0000";
+                    responseEntity.msg = "评论成功";
+                    return responseEntity;
+                }
+            }
+            /*
             String userName = cookies[1].getValue();
             if (userName != null) {
                 responseEntity.code = "0000";
                 responseEntity.msg = userName + "评论成功";
                 return responseEntity;
             }
+            */
         }
         return responseEntity;
     }
